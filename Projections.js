@@ -117,8 +117,8 @@ Geo.projections = {
         x: Geo.Utilities.radians(latlng.lng) * Math.cos(Geo.Utilities.radians(latlng.lat)) / Math.PI,
         y: latlng.lat / 90
       };
-      xy.x = Geo.Utilities.map_range(xy.x, -1, 1, 0, comp_w);
-      xy.y = Geo.Utilities.map_range(xy.y*-1, -1, 1, 0, comp_h);
+      xy.x = Geo.Utilities.map(xy.x, -1, 1, 0, comp_w);
+      xy.y = Geo.Utilities.map(xy.y*-1, -1, 1, 0, comp_h);
       return xy;
       },
     project: function (latlng) {
@@ -137,7 +137,19 @@ Geo.projections = {
 
   // /** @see http://en.wikipedia.org/wiki/Aitoff_projection */
   aitoff: {
-      toAESpace: function (latlng, scale, comp_w, comp_h) {},
+      toAESpace: function (latlng, scale, comp_w, comp_h) {
+          var l = Geo.Utilities.radians(latlng.lng),
+        f = Geo.Utilities.radians(latlng.lat),
+        a = Math.acos(Math.cos(f) * Math.cos(l / 2));
+
+        var xy = {
+        x: 2 * (a ? (Math.cos(f) * Math.sin(l / 2) * a / Math.sin(a)) : 0) / Math.PI,
+        y: 2 * (a ? (Math.sin(f) * a / Math.sin(a)) : 0) / Math.PI
+      };
+        xy.x = AEMAP.Utilities.map(xy.x, -1, 1, 0, w);
+        xy.y = AEMAP.Utilities.map(xy.y*-1, -1, 1, 0, h);
+        return xy;
+      },
     project: function (latlng) {
       var l = Geo.Utilities.radians(latlng.lng),
         f = Geo.Utilities.radians(latlng.lat),
@@ -180,8 +192,8 @@ Geo.projections = {
           x: 2 * Math.SQRT2 * Math.cos(f) * Math.sin(l / 2) / c / 3,
           y: Math.SQRT2 * Math.sin(f) / c / 1.5
         };
-        xy.x = Geo.Utilities.map_range(xy.x, -1, 1, 0, comp_w);
-        xy.y = Geo.Utilities.map_range(xy.y*-1, -1, 1, 0, comp_h);
+        xy.x = Geo.Utilities.map(xy.x, -1, 1, 0, comp_w);
+        xy.y = Geo.Utilities.map(xy.y*-1, -1, 1, 0, comp_h);
 
         return xy;
     },
