@@ -7,6 +7,7 @@
 Geo.projections = {
   /** The identity or "none" projection. */
   equirectangular: {
+    toIDPage:function(latlng, page){},
     toAESpace: function (latlng, scale, comp_w, comp_h) {
 
       var xoff = (comp_w / 2);
@@ -36,6 +37,7 @@ Geo.projections = {
   },
   /** @see http://en.wikipedia.org/wiki/Mercator_projection */
   mercator: {
+    toIDPage:function(latlng, page){},
     toAESpace: function (latlng, scale, comp_w, comp_h) {
       // taken from here http://stackoverflow.com/questions/1019997/convert-lat-longs-to-x-y-co-ordinates/1020681#1020681
       // Mercator projection
@@ -76,7 +78,7 @@ Geo.projections = {
 
   // /** @see http://en.wikipedia.org/wiki/Gall-Peters_projection */
   "gall-peters": {
-
+    toIDPage:function(latlng, page){},
     toAESpace: function (latlng, scale, comp_w, comp_h) {
       // based on this
       // https://developers.google.com/maps/documentation/javascript/examples/map-projection-simple
@@ -111,6 +113,7 @@ Geo.projections = {
 
   // /** @see http://en.wikipedia.org/wiki/Sinusoidal_projection */
   sinusoidal: {
+    toIDPage:function(latlng, page){},
       toAESpace: function (latlng, scale, comp_w, comp_h) {
 
       var xy = {
@@ -137,6 +140,8 @@ Geo.projections = {
 
   // /** @see http://en.wikipedia.org/wiki/Aitoff_projection */
   aitoff: {
+    toIDPage:function(latlng, page){},
+
       toAESpace: function (latlng, scale, comp_w, comp_h) {
           var l = Geo.Utilities.radians(latlng.lng),
         f = Geo.Utilities.radians(latlng.lat),
@@ -184,6 +189,8 @@ Geo.projections = {
 
   // /** @see http://en.wikipedia.org/wiki/Hammer_projection */
   "hammer": {
+    toIDPage:function(latlng, page){},
+
     toAESpace: function (latlng, scale, comp_w, comp_h) {
       var l = Geo.Utilities.radians(latlng.lng),
         f = Geo.Utilities.radians(latlng.lat),
