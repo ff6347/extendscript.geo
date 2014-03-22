@@ -4,7 +4,7 @@
  * @see AEMAP.Geo.Projection
  * @namespace
  */
-AEMAP.Geo.projections = {
+Geo.projections = {
   /** The identity or "none" projection. */
   equirectangular: {
     toAESpace: function (latlng, scale, comp_w, comp_h) {
@@ -163,7 +163,17 @@ AEMAP.Geo.projections = {
   // /** @see http://en.wikipedia.org/wiki/Hammer_projection */
   "hammer": {
     toAESpace: function (latlng, scale, comp_w, comp_h) {
+      var l = Geo.Utilities.radians(latlng.lng),
+        f = Geo.Utilities.radians(latlng.lat),
+        c = Math.sqrt(1 + Math.cos(f) * Math.cos(l / 2));
+        var xy = {
+          x: 2 * Math.SQRT2 * Math.cos(f) * Math.sin(l / 2) / c / 3,
+          y: Math.SQRT2 * Math.sin(f) / c / 1.5
+        };
+        xy.x = Geo.Utilities.map_range(xy.x, -1, 1, 0, comp_w);
+        xy.y = Geo.Utilities.map_range(xy.y*-1, -1, 1, 0, comp_h);
 
+        return xy;
     },
     project: function (latlng) {
       var l = AEMAP.Utilities.radians(latlng.lng),
