@@ -8,6 +8,13 @@ Why protoviz and not D3? because extracting some projection types from D3 is muc
 
 https://github.com/mbostock/protovis  
 
+##Usage  
+
+This is still a work in progress  
+development done using grunt. Run:  
+
+    grunt build-id build-ae default  
+
 ##License  
 
 Copyright (c)  2014 Fabian "fabiantheblind" Morón Zirfas  

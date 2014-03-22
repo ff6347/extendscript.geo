@@ -7,17 +7,22 @@ module.exports = function (grunt) {
     pkg: grunt.file.readJSON("package.json"),
 
     copy: {
-
-      script: {
+      all: {
       src: "src/tmp/<%= pkg.name %>.build.<%= pkg.version %>.jsx",
         dest: "dist/<%= pkg.name %>.jsx",
+      },
+            ae: {
+      src: "src/tmp/<%= pkg.name %>.AE.build.<%= pkg.version %>.jsx",
+        dest: "dist/<%= pkg.name %>.ae.jsx",
+      },
+            id: {
+      src: "src/tmp/<%= pkg.name %>.ID.build.<%= pkg.version %>.jsx",
+        dest: "dist/<%= pkg.name %>.id.jsx",
       }
 
     },
 
     concat: {
-
-      dist: {
         options: {
           stripBanners: true,
           banner: '\n/*! <%= pkg.name %>.jsx - v<%= pkg.version %> - ' +
@@ -25,15 +30,32 @@ module.exports = function (grunt) {
           nonull: true,
           separator: '\n',
         },
+ id: {
 
         src: [
         "src/Geo.js",
         "src/Utilities.js",
         "src/Projections.js",
+        "src/InDesign.js"],
+        dest: "src/tmp/<%= pkg.name %>.ID.build.<%= pkg.version %>.jsx"
+      },
+      ae: {
+        src: [
+        "src/Geo.js",
+        "src/Utilities.js",
+        "src/Projections.js",
         "src/AfterEffects.js"],
+        dest: "src/tmp/<%= pkg.name %>.AE.build.<%= pkg.version %>.jsx"
+      },
+      all: {
+        src: [
+        "src/Geo.js",
+        "src/Utilities.js",
+        "src/Projections.js",
+        "src/AfterEffects.js",
+        "src/InDesign.js"],
         dest: "src/tmp/<%= pkg.name %>.build.<%= pkg.version %>.jsx"
       },
-
       // dev: {
       //   options: {
       //     stripBanners: true,
@@ -69,7 +91,11 @@ module.exports = function (grunt) {
 
   // grunt.registerTask('build-dist', ['copy:script', 'concat:dist', 'wrap:script']);
   // Default task.
-  grunt.registerTask('default', ['concat:dist','copy:script']);
+  grunt.registerTask('build-id', ['concat:id','copy:id']);
+
+  grunt.registerTask('build-ae', ['concat:ae','copy:ae']);
+
+  grunt.registerTask('default', ['concat:all','copy:all']);
 
   // grunt.registerTask('default', ['js2coffee']);
 
