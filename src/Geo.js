@@ -1,7 +1,6 @@
 /*!
  * This is Geo.js
- *
- * A collection of functions for calculating geo locations.
+  * A collection of functions for calculating geo locations.
  * As used in AEMap.jsx and Locations.jsx
  * These functions are heavily based on mbostocks protoviz.
  * Why protoviz and not D3? because extracting some projection types from D3

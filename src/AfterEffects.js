@@ -37,9 +37,7 @@ Geo.projections.equirectangular = {
         "x": x,
         "y": y
       };
-
     },
-
   };
 
   // /** @see http://en.wikipedia.org/wiki/Gall-Peters_projection */
@@ -68,10 +66,8 @@ Geo.projections.equirectangular = {
     Geo.projections.sinusoidal= {
       toAESpace: function (latlng, scale, comp_w, comp_h) {
 
-      var xy = {
-        x: Geo.Utilities.radians(latlng.lng) * Math.cos(Geo.Utilities.radians(latlng.lat)) / Math.PI,
-        y: latlng.lat / 90
-      };
+      var xy = Geo.sinusoidal.project(latlng);
+
       xy.x = Geo.Utilities.map(xy.x, -1, 1, 0, comp_w);
       xy.y = Geo.Utilities.map(xy.y*-1, -1, 1, 0, comp_h);
       return xy;
@@ -102,6 +98,7 @@ Geo.projections.equirectangular = {
     Geo.projections.hammer= {
 
     toAESpace: function (latlng, scale, comp_w, comp_h) {
+
       var l = Geo.Utilities.radians(latlng.lng),
         f = Geo.Utilities.radians(latlng.lat),
         c = Math.sqrt(1 + Math.cos(f) * Math.cos(l / 2));
