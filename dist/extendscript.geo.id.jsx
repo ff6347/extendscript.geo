@@ -43,21 +43,7 @@ Geo.Utilities.map = function (value, low1, high1, low2, high2) {
 Geo.projections = {
   /** The identity or "none" projection. */
   equirectangular: {
-    // toIDPage:function(latlng, page){},
-    // toAESpace: function (latlng, scale, comp_w, comp_h) {
 
-    //   var xoff = (comp_w / 2);
-    //   var yoff = (comp_h / 2);
-    //   // var _scale = scale * 1000;
-    //   var x = ((latlng.lng) * scale) + xoff;
-    //   var y = ((latlng.lat * -1) * scale) + yoff;
-
-    //   return {
-    //     "x": x,
-    //     "y": y
-    //   };
-
-    // },
     project: function (latlng) {
       return {
         x: latlng.lng,
@@ -185,12 +171,13 @@ Geo.projections = {
 };
 
 // END OF Projections.js
-Geo.projections.equirectangular = {
+Geo.projections.ind = function(){};
+Geo.projections.ind.equirectangular = {
     toIDPage: function (latlng, page) {
     }
   };
   /** @see http://en.wikipedia.org/wiki/Mercator_projection */
-  Geo.projections.mercator = {
+  Geo.projections.ind.mercator = {
     toIDPage: function (latlng, page) {
 
 
@@ -198,7 +185,7 @@ Geo.projections.equirectangular = {
   };
 
   // /** @see http://en.wikipedia.org/wiki/Gall-Peters_projection */
-  Geo.projections.gallpeters = {
+  Geo.projections.ind.gallpeters = {
     toIDPage: function (latlng, page) {
 
     }
@@ -206,7 +193,7 @@ Geo.projections.equirectangular = {
   };
 
   // /** @see http://en.wikipedia.org/wiki/Sinusoidal_projection */
-    Geo.projections.sinusoidal= {
+    Geo.projections.ind.sinusoidal= {
       toIDPage: function (latlng, page) {
 
 
@@ -215,7 +202,7 @@ Geo.projections.equirectangular = {
   };
 
   // /** @see http://en.wikipedia.org/wiki/Aitoff_projection */
-    Geo.projections.aitoff= {
+    Geo.projections.ind.aitoff= {
 
       toIDPage: function (latlng, page) {
 
@@ -224,7 +211,7 @@ Geo.projections.equirectangular = {
 
 
   // /** @see http://en.wikipedia.org/wiki/Hammer_projection */
-    Geo.projections.hammer= {
+    Geo.projections.ind.hammer= {
 
     toIDPage: function (latlng, page) {
     }

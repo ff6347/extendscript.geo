@@ -43,21 +43,7 @@ Geo.Utilities.map = function (value, low1, high1, low2, high2) {
 Geo.projections = {
   /** The identity or "none" projection. */
   equirectangular: {
-    // toIDPage:function(latlng, page){},
-    // toAESpace: function (latlng, scale, comp_w, comp_h) {
 
-    //   var xoff = (comp_w / 2);
-    //   var yoff = (comp_h / 2);
-    //   // var _scale = scale * 1000;
-    //   var x = ((latlng.lng) * scale) + xoff;
-    //   var y = ((latlng.lat * -1) * scale) + yoff;
-
-    //   return {
-    //     "x": x,
-    //     "y": y
-    //   };
-
-    // },
     project: function (latlng) {
       return {
         x: latlng.lng,
@@ -185,7 +171,8 @@ Geo.projections = {
 };
 
 // END OF Projections.js
-Geo.projections.equirectangular = {
+Geo.projections.ae = function(){};
+Geo.projections.ae.equirectangular = {
     toAESpace: function (latlng, scale, comp_w, comp_h) {
 
       var xoff = (comp_w / 2);
@@ -200,7 +187,7 @@ Geo.projections.equirectangular = {
     }
   };
   /** @see http://en.wikipedia.org/wiki/Mercator_projection */
-  Geo.projections.mercator = {
+  Geo.projections.ae.mercator = {
     toAESpace: function (latlng, scale, comp_w, comp_h) {
       // taken from here http://stackoverflow.com/questions/1019997/convert-lat-longs-to-x-y-co-ordinates/1020681#1020681
       // Mercator projection
@@ -222,7 +209,7 @@ Geo.projections.equirectangular = {
   };
 
   // /** @see http://en.wikipedia.org/wiki/Gall-Peters_projection */
-  Geo.projections.gallpeters = {
+  Geo.projections.ae.gallpeters = {
     toAESpace: function (latlng, scale, comp_w, comp_h) {
       // based on this
       // https://developers.google.com/maps/documentation/javascript/examples/map-projection-simple
@@ -244,20 +231,22 @@ Geo.projections.equirectangular = {
   };
 
   // /** @see http://en.wikipedia.org/wiki/Sinusoidal_projection */
-    Geo.projections.sinusoidal= {
-      toAESpace: function (latlng, scale, comp_w, comp_h) {
+    Geo.projections.ae.sinusoidal = {
+    toAESpace : function (latlng, scale, comp_w, comp_h) {
 
-      var xy = Geo.sinusoidal.project(latlng);
+      var xy = {
+        x: Geo.Utilities.radians(latlng.lng) * Math.cos(Geo.Utilities.radians(latlng.lat)) / Math.PI,
+        y: latlng.lat / 90
+      };
 
       xy.x = Geo.Utilities.map(xy.x, -1, 1, 0, comp_w);
       xy.y = Geo.Utilities.map(xy.y*-1, -1, 1, 0, comp_h);
       return xy;
-      },
-
+    }
   };
 
   // /** @see http://en.wikipedia.org/wiki/Aitoff_projection */
-    Geo.projections.aitoff= {
+    Geo.projections.ae.aitoff= {
 
       toAESpace: function (latlng, scale, comp_w, comp_h) {
           var l = Geo.Utilities.radians(latlng.lng),
@@ -276,7 +265,7 @@ Geo.projections.equirectangular = {
 
 
   // /** @see http://en.wikipedia.org/wiki/Hammer_projection */
-    Geo.projections.hammer= {
+    Geo.projections.ae.hammer= {
 
     toAESpace: function (latlng, scale, comp_w, comp_h) {
 

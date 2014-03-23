@@ -7,21 +7,7 @@
 Geo.projections = {
   /** The identity or "none" projection. */
   equirectangular: {
-    // toIDPage:function(latlng, page){},
-    // toAESpace: function (latlng, scale, comp_w, comp_h) {
 
-    //   var xoff = (comp_w / 2);
-    //   var yoff = (comp_h / 2);
-    //   // var _scale = scale * 1000;
-    //   var x = ((latlng.lng) * scale) + xoff;
-    //   var y = ((latlng.lat * -1) * scale) + yoff;
-
-    //   return {
-    //     "x": x,
-    //     "y": y
-    //   };
-
-    // },
     project: function (latlng) {
       return {
         x: latlng.lng,
