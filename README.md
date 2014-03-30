@@ -15,6 +15,17 @@ development done using grunt. Run:
 
     grunt build-id build-ae default  
 
+
+##Supported Projections  
+
+- [mercator](http://en.wikipedia.org/wiki/Mercator_projection)  
+- [gallpeters](http://en.wikipedia.org/wiki/Gall-Peters_projection)  
+- [sinusoidal](http://en.wikipedia.org/wiki/Sinusoidal_projection)  
+- [aitoff](http://en.wikipedia.org/wiki/Aitoff_projection)  
+- [hammer](http://en.wikipedia.org/wiki/Hammer_projection)  
+
+See also [this](http://xkcd.com/977/) for a good laugh.  
+
 ##License  
 
 Copyright (c)  2014 Fabian "fabiantheblind" Morón Zirfas  
