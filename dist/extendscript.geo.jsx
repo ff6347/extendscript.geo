@@ -1,5 +1,5 @@
 
-/*! extendscript.geo.jsx - v0.0.1 - 2014-03-30 */
+/*! extendscript.geo.jsx - v0.0.1 - 2014-04-15 */
 /*!
  * This is Geo.js
   * A collection of functions for calculating geo locations.
@@ -302,51 +302,63 @@ Geo.projections.ae.equirectangular = {
   };
 
 // END OF AfterEffects.js
-Geo.projections.ind = function(){};
+Geo.projections.ind = function () {};
 Geo.projections.ind.equirectangular = {
-    toIDPage: function (latlng, page) {
-    }
-  };
-  /** @see http://en.wikipedia.org/wiki/Mercator_projection */
-  Geo.projections.ind.mercator = {
-    toIDPage: function (latlng, page) {
+  toIDPage: function (doc, latlng, page) {
+    var w = doc.documentPreferences.pageWidth;
+    var h = doc.documentPreferences.pageHeight;
+    var xoff = (w / 2);
+    var yoff = (h / 2);
+    var x = (latlng.lng) + xoff;
+    var y = (latlng.lat * -1) + yoff;
+    return {
+      "x": x,
+      "y": y
+    };
+  }
+};
+/** @see http://en.wikipedia.org/wiki/Mercator_projection */
+Geo.projections.ind.mercator = {
+  toIDPage: function (doc, latlng, page) {
+
+    // return {
+    //   "x": x,
+    //   "y": y
+    // };
+  }
+};
+
+// /** @see http://en.wikipedia.org/wiki/Gall-Peters_projection */
+Geo.projections.ind.gallpeters = {
+  toIDPage: function (doc, latlng, page) {
+
+  }
+
+};
+
+// /** @see http://en.wikipedia.org/wiki/Sinusoidal_projection */
+Geo.projections.ind.sinusoidal = {
+  toIDPage: function (doc, latlng, page) {
 
 
-    }
-  };
+  }
 
-  // /** @see http://en.wikipedia.org/wiki/Gall-Peters_projection */
-  Geo.projections.ind.gallpeters = {
-    toIDPage: function (latlng, page) {
+};
 
-    }
+// /** @see http://en.wikipedia.org/wiki/Aitoff_projection */
+Geo.projections.ind.aitoff = {
 
-  };
+  toIDPage: function (doc, latlng, page) {
 
-  // /** @see http://en.wikipedia.org/wiki/Sinusoidal_projection */
-    Geo.projections.ind.sinusoidal= {
-      toIDPage: function (latlng, page) {
+  },
+};
 
 
-      }
+// /** @see http://en.wikipedia.org/wiki/Hammer_projection */
+Geo.projections.ind.hammer = {
 
-  };
+  toIDPage: function (doc, latlng, page) {}
 
-  // /** @see http://en.wikipedia.org/wiki/Aitoff_projection */
-    Geo.projections.ind.aitoff= {
-
-      toIDPage: function (latlng, page) {
-
-      },
-  };
-
-
-  // /** @see http://en.wikipedia.org/wiki/Hammer_projection */
-    Geo.projections.ind.hammer= {
-
-    toIDPage: function (latlng, page) {
-    }
-
-  };
+};
 
 // END OF AfterEffects.js

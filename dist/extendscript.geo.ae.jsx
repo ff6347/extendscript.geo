@@ -1,5 +1,5 @@
 
-/*! extendscript.geo.jsx - v0.0.1 - 2014-03-30 */
+/*! extendscript.geo.jsx - v0.0.1 - 2014-04-15 */
 /*!
  * This is Geo.js
   * A collection of functions for calculating geo locations.
