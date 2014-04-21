@@ -59,21 +59,20 @@ Geo.projections.ae.equirectangular = {
   Geo.projections.ae.gallpeters = {
     name:"gallpeters",
     toAESpace: function (latlng, scale, comp_w, comp_h) {
-      // based on this
-      // https://developers.google.com/maps/documentation/javascript/examples/map-projection-simple
-      var xoff = (comp_w / 2);
-      var yoff = (comp_h / 2);
-      // var _scale = scale * 1000;
-      // var x = ((latlng.lng) * scale) + xoff;
-      var x = xoff + (((comp_w / 360) * latlng.lng));
-      // var y = ((latlng.lat * -1) * scale) + yoff;
-      var latRadians = Geo.Utilities.radians(latlng.lat);
-      var y = yoff - ((comp_h / 2) * Math.sin(latRadians));
-      return {
-        "x": x,
-        "y": y
-      };
-
+    // based on this
+    // https://developers.google.com/maps/documentation/javascript/examples/map-projection-simple
+    var xoff = (comp_w / 2);
+    var yoff = (comp_h / 2);
+    // var _scale = scale * 1000;
+    // var x = ((latlng.lng) * scale) + xoff;
+    var x = xoff + (((comp_w / 360) * latlng.lng));
+    // var y = ((latlng.lat * -1) * scale) + yoff;
+    var latRadians = Geo.Utilities.radians(latlng.lat);
+    var y = yoff - ((comp_h / 2) * Math.sin(latRadians));
+    return {
+      "x": x,
+      "y": y
+    };
     }
 
   };
